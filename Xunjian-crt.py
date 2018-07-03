@@ -4,21 +4,26 @@
 '''
 This script can accomplish the following
 1. SECURE CRT, AUTO OPEN TAB, AUTO TELNET
-The "SessionList.txt" has the
+You need to first edit the "SessionList.txt", add the ip address which you want to telnet to.
 
-2. Each tab have a log file
+2. Each tab have a log file(Use the logging save option of the SecureCRT)
 
 3. Send commands to the Tabs.
-show system   >>>>>>>System Uptime, running status
-show cpuinfo  >>>>>idle
-show meminfo  >>>>>MemFree/MemTotal>80%
-show log      >>>>>Extract data in one month
-show version
-show interface gige x/y throughput
-show ip route
-show ip route | count-only .
-show envm     >>>>>Present, Good, Normal
-ACL --->ntp, snmp protect
+    "show clock",
+    "show version",
+    "show system",
+    "show cpuinfo",
+    "show meminfo",
+    "show ip route",
+    "show envm",
+    "show log",
+    "show ha log",
+    "show ip ospf neighbor",
+    "show ip bgp summary",
+    "show isis neighbor",
+    "show cable modem summary total",
+    "show tech",
+    "show version"
 '''
 
 import re
@@ -109,7 +114,7 @@ def main():
             else:
                 skippedTabs=skippedTabs+","+str(i)
 
-
+	##Detect if it is time to disconnect the tab session. If the system detect the "Show version" in the end. It will disconnect the tab
         response=tab.Screen.WaitForStrings("show version")
         if response:
             tab.Session.Log(False)
@@ -125,7 +130,6 @@ def main():
     LaunchViewer(LOG_DIRECTORY)
 
 
-
 def AutoConnectTab(file):  ###Auto connect sessions from a txt
     ####This is to Open the "SessionList.txt" and get a list of the ip address
     '''If you want to ssh to the ip address, Use the following. Before that you need to assign the pwd,user,host,port, e.g:
@@ -133,6 +137,8 @@ def AutoConnectTab(file):  ###Auto connect sessions from a txt
             user=xx
             cmd = "/SSH2 /PASSWORD %s %s@%s /P %s" %(password,user,host,port)   ##equals to "ssh hhr@50.206.125.254 -p 99 -PASSWORD xxx
             crt.Session.Connect(cmd)'''
+	
+	##
     if not os.path.exists(file):
         return
     sessionFile = open(file, "r")
@@ -142,16 +148,20 @@ def AutoConnectTab(file):  ###Auto connect sessions from a txt
         if session:
             sessionArray.append(session)
     sessionFile.close()
-    # Receive variable
+
+    # Receive variable: user, password
     objNewTab=crt.Session.ConnectInTab("/TELNET %s 23" % sessionArray[0])
     user = crt.Dialog.Prompt("Enter user name:", "Login", "", False)
     password = crt.Dialog.Prompt("Enter password:", "Login", "", True)
     login(user,password)
+	###If the password is not correct. Pop up a window for relogin
     while not objNewTab.Screen.WaitForString(">", 3):
         user=crt.Dialog.Prompt("Relogin! Enter user name:", "Login", "", False)
         password=crt.Dialog.Prompt("Relogin! Enter password:", "Login", "", True)
         login(user,password)
+	##If the password is correct, enter the enable mode.
     enablemode()
+	##For the remaining windows, use the login information that you enter in the first tab.
     for session in sessionArray[1:]:
         try:
             crt.Session.ConnectInTab("/TELNET %s 23" % session)
@@ -159,7 +169,7 @@ def AutoConnectTab(file):  ###Auto connect sessions from a txt
             enablemode()
         except IOError:
             pass
-        if not SCRIPT_TAB.Session.Connected:
+        if not tab.Session.Connected:
             return
 
 def login(user,password):
@@ -178,6 +188,7 @@ def enablemode():
     objNew.Screen.Send("casa\r")
     objNew.Screen.WaitForString("#")
 
+##For call out the folder
 def LaunchViewer(filename):
     try:
         os.startfile(filename)

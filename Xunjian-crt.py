@@ -185,7 +185,7 @@ def enablemode():
     objNew=crt.GetActiveTab()
     objNew.Screen.Send("enable\r")
     objNew.Screen.WaitForString("Password:")
-    objNew.Screen.Send("casa\r")
+    objNew.Screen.Send("123\r")
     objNew.Screen.WaitForString("#")
 
 ##For call out the folder

@@ -38,7 +38,7 @@ def main():
     #Step2:Handle the text and get some key words
     #########################################################
     for file in gettxtpath():
-        host = file.split(".")[0]
+        host=file.split("\\")[-1].split(".")[0]
         w1 = host + "#show ip ospf neighbor"
         w2 = host + "#show ip bgp summary"
         w3 = host + "#show isis neighbor"

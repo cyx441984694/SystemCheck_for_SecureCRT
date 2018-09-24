@@ -37,7 +37,7 @@ HOW TO USE THIS PROJECT
 How to use:<br>
 1. Download <The path could not contain Chinese and blank space<br>
 2. Download the proj. ect and locate it under the same location. (SessionList.txt is on the same path as the SecureCRTPortable.exe<br>
-3. Run the "Xunjian.py" in Xunjian folder or run the shorcut Xunjian.py at the root directly.
+3. Run the "Xunjian.py" in Xunjian folder or run the shortcut Xunjian.py at the root directly.
 4. FinalReport could be seen in the same file.<br>
 
 ![Example](https://github.com/cyx441984694/SystemCheck_for_SecureCRT/blob/master/system-check.png)

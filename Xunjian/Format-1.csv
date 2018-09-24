@@ -1,0 +1,20 @@
+检查项目,检查内容,检查方法/检查命令
+设备资源利用检查 ,设备时间,show clock
+设备资源利用检查 ,设备名称,show system
+设备资源利用检查 ,工作版本,"show version
+(正常:正确显示运行的IOS软件版本"
+设备资源利用检查 ,设备型号,show system
+设备资源利用检查 ,设备正常工作时间检查,show system
+设备资源利用检查 ,CPU平均利用率,show cpuinfo(正确: idle >70%) 
+设备资源利用检查 ,Memory利用率,show meminfo
+设备模块工作状态检查,检查各模块是否运行正常,show system (正常:正确显示模块型号，且全部都在running 状态)
+设备模块工作状态检查,板卡切换情况,show ha log
+邻居状态,OSPF邻居状态,show ip ospf neighbor
+邻居状态,BGP邻居状态,show ip bgp summary
+邻居状态,ISIS邻居状态 ,show isis neighbor
+电源及风扇、各模块工作温度状态,"Power, temperature status",show envm
+电源及风扇、各模块工作温度状态,Power module alert,show log | in Power
+电源及风扇、各模块工作温度状态,Temperature alert,show log | in Temperature
+漏洞防护/配置优化,检查设备是否已经对常见的DOS漏洞/攻击作出了适当防护，,通过检查running-config，确认设备是否已经对ntp、snmp管理、telnet/ssh管理https等可能受到漏洞攻击的模块进行适当的防护配置，或者配置优化
+Video服务,检查是否存在homeless video ,show video homeless-streams
+Video服务,检查是否存在non-working video,show video session all brief

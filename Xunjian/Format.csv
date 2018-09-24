@@ -1,0 +1,16 @@
+System Check,Content
+Basic Check,System Clock
+,Hostname
+,SMM  Version
+,Product
+,System Uptime
+,CPU status
+,MemFree/MemTotal
+,Module Status
+,OSPF Neighbor
+,BGP Neighbor
+,ISIS Neighbor
+,"Power, temperature status"
+,Power module alert
+,Temperature alert
+,ACL 

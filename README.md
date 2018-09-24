@@ -40,4 +40,4 @@ How to use:<br>
 3. Run the "Xunjian..py" in Xunjian folder or run the shorcut Xunjian.py at the root directly.
 4. FinalReport could be seen in the same file.<br>
 
-
+![Example](https://github.com/cyx441984694/SystemCheck_for_SecureCRT/blob/master/system-check.png)

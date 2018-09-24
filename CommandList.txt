@@ -1,0 +1,23 @@
+#你可以对下面的命令进行修改或者直接在该行开头添加#来注释掉你不需要的命令，最后保存文本。
+#对于"#"开头的行我们会进行忽略，并且不会传到SecureCRT中。
+
+
+#You can use "#" to note off the command or add any more commands
+
+show clock
+show version
+show system
+show cpuinfo
+show meminfo
+show ip route
+show envm
+show ha log
+show log
+show video homeless-streams
+show ip ospf neighbor
+show ip bgp summary
+show isis neighbor
+show cable modem summary total
+show tech
+
+	
